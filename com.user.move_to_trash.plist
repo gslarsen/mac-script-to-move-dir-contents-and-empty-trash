@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+  <dict>
+    <key>Label</key>
+    <string>com.user.move_to_trash</string>
+    <key>ProgramArguments</key>
+    <array>
+      <string>/bin/bash</string>
+      <string>/Users/gregorylarsen/move_to_trash.sh</string>
+    </array>
+    <key>StartCalendarInterval</key>
+    <dict>
+      <key>Weekday</key>
+      <integer>1</integer> <!-- 1 is Monday -->
+      <key>Hour</key>
+      <integer>6</integer> <!-- 6:00 AM -->
+      <key>Minute</key>
+      <integer>0</integer> <!-- 0 minutes - revise for testing-->
+    </dict>
+    <key>StandardOutPath</key>
+    <string>/Users/gregorylarsen/move_to_trash.stdout</string>
+    <key>StandardErrorPath</key>
+    <string>/Users/gregorylarsen/move_to_trash.stderr</string>
+  </dict>
+</plist>
+
+<!-- End: com.user.move_to_trash.plist
+
+  Check the status of the job at any time:
+
+  bash
+  launchctl list | grep move_to_trash
+
+  If it shows a 0 exit code, it’s running fine:
+  -    0    com.user.move_to_trash
+
+  /*********************IMPORTANT!*********************************/
+  Location: ~/Library/LaunchAgents/com.user.move_to_trash.plist
+
+  Note: Any changes made to the .plist file will require you to unload and reload the job for the
+changes to take effect:
+  launchctl unload ~/Library/LaunchAgents/com.user.move_to_trash.plist; launchctl load
+~/Library/LaunchAgents/com.user.move_to_trash.plist
+  /*********************END IMPORTANT!*********************************/
+
+  If you want to stop the job from running, you can unload it:
+  launchctl unload ~/Library/LaunchAgents/com.user.move_to_trash.plist
+
+  If you want to start it again, you can load it:
+  launchctl load ~/Library/LaunchAgents/com.user.move_to_trash.plist
+
+  If you want to remove the job completely, you can unload it and then delete the .plist file:
+  launchctl unload ~/Library/LaunchAgents/com.user.move_to_trash.plist
+  rm ~/Library/LaunchAgents/com.user.move_to_trash.plist
+
+  If you want to manually run the job, you can do so with the following command:
+  launchctl start com.user.move_to_trash
+-->
