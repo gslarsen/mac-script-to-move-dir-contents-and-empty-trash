@@ -2,10 +2,10 @@
 # Prevent sleep while the script is running
 /usr/bin/caffeinate -i -w $$ &
 
-LOGFILE="/Users/gregorylarsen/move_to_trash.log"
-STDERR_LOGFILE="/Users/gregorylarsen/move_to_trash.stderr"
-TRASH_DIR="/Users/gregorylarsen/.Trash"
-SOURCE_DIR="/Users/gregorylarsen/Downloads"
+LOGFILE="$HOME/move_to_trash.log"
+STDERR_LOGFILE="$HOME/move_to_trash.stderr"
+TRASH_DIR="$HOME/.Trash"
+SOURCE_DIR="$HOME/Downloads"
 
 # Truncate log files to start fresh with each run
 > "$LOGFILE"
