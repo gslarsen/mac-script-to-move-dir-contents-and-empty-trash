@@ -11,7 +11,6 @@ SOURCE_DIR="$HOME/Downloads"
 > "$LOGFILE"
 > "$STDERR_LOGFILE"
 
-# Function to show error dialog
 show_error_dialog() {
     response=$(osascript -e "display dialog \"Error occurred while moving files! Open ${SOURCE_DIR} to check.\n\nTo stop these, comment out osascripts in ~/move_to_trash.sh\" with title \"Move to Trash\" buttons {\"No, thanks\", \"Open Source Directory\"} default button \"Open Source Directory\"" \
         2> >(grep -v 'IMKClient subclass' | grep -v 'IMKInputSession subclass' >> "$STDERR_LOGFILE"))
@@ -26,7 +25,6 @@ show_error_dialog() {
     fi
 }
 
-# Function to ensure files and directories are moved successfully
 move_items() {
     echo "Moving files from $SOURCE_DIR to $TRASH_DIR..." >> "$LOGFILE"
 
@@ -60,7 +58,7 @@ move_items() {
     echo "Files and directories moved successfully." >> "$LOGFILE"
 }
 
-# Main Script Logic
+# main
 {
     echo "Script started at $(date)"
 
