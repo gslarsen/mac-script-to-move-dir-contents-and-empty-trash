@@ -5,6 +5,7 @@
 LOGFILE="$HOME/move_to_trash.log"
 STDERR_LOGFILE="$HOME/move_to_trash.stderr"
 TRASH_DIR="$HOME/.Trash"
+MOBILE_TRASH="$HOME/Library/Mobile Documents/.Trash"
 SOURCE_DIR="$HOME/Downloads"
 
 # Truncate log files to start fresh with each run
@@ -71,9 +72,10 @@ move_items() {
     echo "Cleaning up Trash..."
     printf "Items in Trash before cleanup:\n" >> "$LOGFILE"
     find "$TRASH_DIR" -mindepth 1 -print | sed 's/^/\t/' >> "$LOGFILE"
-
+    find "$MOBILE_TRASH" -mindepth 1 -print | sed 's/^/\t/' >> "$LOGFILE"
 
     find "$TRASH_DIR" -mindepth 1 -exec rm -rf "{}" + 2>>"$STDERR_LOGFILE"
+    find "$MOBILE_TRASH" -mindepth 1 -exec rm -rf "{}" + 2>>"$STDERR_LOGFILE"
 
     if [[ $? -ne 0 ]]; then
         echo "Error: Could not clean up Trash." >>"$LOGFILE"
@@ -88,3 +90,4 @@ move_items() {
         2> >(grep -v 'IMKClient subclass' | grep -v 'IMKInputSession subclass' >> "$STDERR_LOGFILE")
 
 } >>"$LOGFILE" 2>>"$STDERR_LOGFILE"
+
